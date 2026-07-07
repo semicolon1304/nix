@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports =
@@ -84,6 +84,7 @@ programs.hyprland.enable = true;
 programs.zsh.enable = true;
 programs.git.enable = true;
 programs.neovim.enable = true;
+# programs.zen-browser.enable = true;
 
 environment.systemPackages = with pkgs; [
 	kitty
@@ -93,6 +94,8 @@ environment.systemPackages = with pkgs; [
 	librewolf
 	fastfetch
 	zsh-powerlevel10k
+  inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+
 	# vscode extension fuckery
   (vscode-with-extensions.override {
     	vscode = vscodium;

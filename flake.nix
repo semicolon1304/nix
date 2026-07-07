@@ -3,17 +3,17 @@
 
     inputs = {
         nixpkgs.url = "nixpkgs/nixos-26.05";
-        # nixpkgs-unstable.url = "nixpkgs/nixos-unstable;
-
+        zen-browser.url = "github:youwen5/zen-browser-flake";
     };
     
-    outputs = {self, nixpkgs, ...}:
+    outputs = {self, nixpkgs, ...}@inputs:  
         let 
             lib = nixpkgs.lib;
         in {
             nixosConfigurations = {
                 forward-onto-dawn = lib.nixosSystem {
                     system = "x86_64-linux";
+                    specialArgs = {inherit inputs;};    
                     modules = [./configuration.nix];
                 };
             };
