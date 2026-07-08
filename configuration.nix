@@ -41,7 +41,10 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-
+swapDevices = [{
+  device = "/swapfile";
+  size = 8*1024;
+}];
 
   
 
@@ -94,6 +97,8 @@ environment.systemPackages = with pkgs; [
 	librewolf
 	fastfetch
 	zsh-powerlevel10k
+  home-manager
+  brightnessctl
   inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
 
 	# vscode extension fuckery
@@ -120,7 +125,7 @@ environment.systemPackages = with pkgs; [
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+   services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
