@@ -28,9 +28,9 @@
     nixosConfigurations = {
       forward-onto-dawn = lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
+        specialArgs = {inherit inputs system;};
         modules = [
-            ./configuration.nix
+            ./hosts/forward-onto-dawn
             nixos-hardware.nixosModules.framework-16-7040-amd
         ];
       };
@@ -39,7 +39,7 @@
     homeConfigurations = {
       zack = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-        modules = [./home.nix];
+        modules = [./home/zack];
       };
     };
   };

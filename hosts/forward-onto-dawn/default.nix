@@ -6,17 +6,17 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     #   ../common/default.nix
+    ../common
   ];
 
-  swapDevices = [
-    {
-      device = "/swapfile";
-      size = 8 * 1024;
-    }
-  ];
+  # swapDevices = [
+  #   {
+  #     device = "/swapfile";
+  #     size = 8 * 1024;
+  #   }
+  # ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -38,13 +38,14 @@
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
   services.printing.enable = true;
-  services.pulseaudio.enable = true;
+  # services.pulseaudio.enable = true;
   services.libinput.enable = true; # Touchpad
   services.displayManager.gdm.enable = true;
-  #   services.pipewire = {
-  #     enable = true;
-  #     pulse.enable = true;
-  #   };
+  services.tailscale.enable = true;
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.zack = {
@@ -57,37 +58,8 @@
   services.displayManager.defaultSession = "hyprland";
 
   # Programs and packages and whatnot?
-  programs.hyprland.enable = true;
-  programs.zsh.enable = true;
-  programs.git.enable = true;
-  programs.neovim.enable = true;
 
   # Packages
-  environment.systemPackages = with pkgs; [
-    kitty
-    vesktop
-    noctalia-shell
-    nautilus
-    fastfetch
-    zsh-powerlevel10k
-    home-manager
-    brightnessctl
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-
-    # vscode extension fuckery
-    (vscode-with-extensions.override {
-      vscode = vscodium;
-      vscodeExtensions = with vscode-extensions;
-        [
-          bbenoist.nix
-          ms-python.python
-          vscode-icons-team.vscode-icons
-          vscodevim.vim
-          kamadorueda.alejandra
-        ]
-        ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [];
-    })
-  ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
