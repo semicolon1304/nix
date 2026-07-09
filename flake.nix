@@ -11,7 +11,11 @@
       url = "github:NixOS/nixos-hardware";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zen-browser.url = "github:youwen5/zen-browser-flake";
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -19,6 +23,7 @@
     nixpkgs,
     home-manager,
     nixos-hardware,
+    nix-vscode-extensions,
     ...
   } @ inputs: let
     lib = nixpkgs.lib;
@@ -34,11 +39,12 @@
             nixos-hardware.nixosModules.framework-16-7040-amd
         ];
       };
-    };
+    };`
 
     homeConfigurations = {
       zack = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+        extraSpecialArgs = { inherit inputs; };
         modules = [./home/zack];
       };
     };

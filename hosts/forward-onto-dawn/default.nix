@@ -18,44 +18,17 @@
   #   }
   # ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Set your time zone.
-  time.timeZone = "America/Chicago";
-
-  # Netwoking
-  networking.networkmanager.enable = true;
-  networking.wireless.enable = true;
   networking.hostName = "forward-onto-dawn";
-
   # Nix settings
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  nixpkgs.config.allowUnfree = true;
 
   # Services
   services.power-profiles-daemon.enable = true;
   services.upower.enable = true;
-  services.printing.enable = true;
   # services.pulseaudio.enable = true;
   services.libinput.enable = true; # Touchpad
-  services.displayManager.gdm.enable = true;
-  services.tailscale.enable = true;
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.zack = {
-    isNormalUser = true;
-    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
-    shell = pkgs.zsh;
-    packages = with pkgs; [];
-  };
 
-  services.displayManager.defaultSession = "hyprland";
 
   # Programs and packages and whatnot?
 
@@ -89,5 +62,4 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.stateVersion = "26.05"; # Did you read the comment?
 }

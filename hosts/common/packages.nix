@@ -41,6 +41,8 @@
     jetbrains.rider
     #jetbrains.idea-oss
     #jetbrains.rust-rover
+    nixd
+    nixpkgs-fmt
 
     # ...Networking?
     proton-vpn
