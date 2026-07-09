@@ -1,5 +1,5 @@
 { lib, pkgs, inputs, ... }: {
-  nixpkgs.overlays = [inputs.nix-vscode-extensions.overlays.default];
+  nixpkgs.overlays = [ inputs.nix-vscode-extensions.overlays.default ];
   programs.vscodium = {
     enable = true;
     package = pkgs.vscodium;
@@ -22,6 +22,28 @@
         "workbench.colorTheme" = "Gruvbox Dark Hard";
         "explorer.confirmDragAndDrop" = false;
         "mutableExtensionsDir" = false;
+        "nix.enableLanguageServer" = true;
+        "nix.serverPath" = "nixd";
+        "nix.formatterPath" = "nixpkgs-fmt";
+
+        # Optional: Enable auto-formatting on saving Nix files
+        "[nix]" = {
+          "editor.defaultFormatter" = "jnoortheen.nix-ide";
+          "editor.formatOnSave" = true;
+        };
+
+        # Advanced: Give nixd context about your flake to enable Home Manager option completion
+        "nix.serverSettings" = {
+          "nixd" = {
+            "formatting" = {
+              "command" = [ "nixpkgs-fmt" ];
+            };
+            # Adjust the path below to point to your system's flake if using flakes
+            # "nixpkgs" = {
+            #   "expr" = "import (builtins.getFlake \"/etc/nixos/flake.nix\").inputs.nixpkgs {}";
+            # };
+          };
+        };
       };
     };
   };

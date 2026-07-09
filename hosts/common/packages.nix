@@ -1,9 +1,5 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
-  
+{pkgs, inputs, ...}: {
+
   programs.steam.enable = true;
   programs.hyprland.enable = true; # Move to hyprland.nix
   programs.zsh.enable = true;

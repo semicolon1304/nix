@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
+{pkgs, lib, ...}: let
   font-name = "MesloLGS NF";
   font-pkg = pkgs.meslo-lgs-nf;
 in {

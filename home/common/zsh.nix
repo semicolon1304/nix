@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{ lib, pkgs, ... }: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -10,7 +6,7 @@
     syntaxHighlighting.enable = true;
 
     initContent = "source ~/.p10k.zsh";
-    
+
     shellAliases = {
       ll = "ls -l";
       la = "ls -a";

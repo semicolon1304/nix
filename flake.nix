@@ -39,7 +39,7 @@
             nixos-hardware.nixosModules.framework-16-7040-amd
         ];
       };
-    };`
+    };
 
     homeConfigurations = {
       zack = home-manager.lib.homeManagerConfiguration {
