@@ -14,6 +14,7 @@
         jdinhlife.gruvbox
         arrterian.nix-env-selector
         jnoortheen.nix-ide
+        johnnymorganz.stylua
       ];
       userSettings = {
         "terminal.integrated.fontFamily" = "MesloLGS NF";
@@ -21,6 +22,7 @@
         "workbench.iconTheme" = "icons";
         "workbench.colorTheme" = "Gruvbox Dark Hard";
         "explorer.confirmDragAndDrop" = false;
+        "explorer.confirmDelete" = false;
         "mutableExtensionsDir" = false;
         "nix.enableLanguageServer" = true;
         "nix.serverPath" = "nixd";
@@ -38,13 +40,16 @@
             "formatting" = {
               "command" = [ "nixpkgs-fmt" ];
             };
-            # Adjust the path below to point to your system's flake if using flakes
-            # "nixpkgs" = {
-            #   "expr" = "import (builtins.getFlake \"/etc/nixos/flake.nix\").inputs.nixpkgs {}";
-            # };
           };
         };
       };
+      keybindings = [
+        {
+          key = "shift+alt+down";
+          command = "editor.action.copyLinesDownAction";
+          when = "editorTextFocus && !editorReadonly";
+        }
+      ];
     };
   };
 }

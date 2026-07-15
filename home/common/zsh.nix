@@ -5,7 +5,10 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
 
-    initContent = "source ~/.p10k.zsh";
+    initContent = ''
+      source ~/.p10k.zsh
+      pokemon-colorscripts --random --no-title
+    '';
 
     shellAliases = {
       ll = "ls -l";

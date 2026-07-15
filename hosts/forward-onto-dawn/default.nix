@@ -11,7 +11,19 @@
   #     size = 8 * 1024;
   #   }
   # ];
-
+  # networking.networkmanager.enable = true;
+  services.openssh = {
+    enable = true;
+    openFirewall = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PermitRootLogin = "no";
+      AllowUsers = [ "myUser" ];
+      MaxAuthTries = 3;
+      PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
+    };
+  };
   networking.hostName = "forward-onto-dawn";
   # Nix settings
 
@@ -20,14 +32,10 @@
   services.upower.enable = true;
   # services.pulseaudio.enable = true;
   services.libinput.enable = true; # Touchpad
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-
-
-  # Programs and packages and whatnot?
-
-  # Packages
-
+  services.fprintd.enable = true;
+  services.fprintd.tod.enable = true;
+  services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
+  
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

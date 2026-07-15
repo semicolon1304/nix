@@ -11,11 +11,14 @@
     clean.extraArgs = "--keep-since 4d --keep 3";
     flake = "/home/zack/nix"; # sets NH_OS_FLAKE variable for you
   };
-
+  fonts.packages = with pkgs; [
+    source-sans
+  ];
   environment.systemPackages = with pkgs; [
     # Essentials
     kitty
     nautilus
+    pcmanfm-qt
     fastfetch
     home-manager
     brightnessctl
@@ -26,7 +29,9 @@
     btop
     pokemon-colorscripts
     micro
-    # meslo-lgs-nf # Font, no other fonts yet tho
+    file
+    killall
+    
 
     # Programming
     python3
@@ -51,9 +56,11 @@
     ffmpeg
     handbrake
 
+    # Fonts 
+    # source-sans
     # Move to hyprland.nix
-    noctalia-shell
-
+    # noctalia-shell
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     vesktop
   ];
 }
