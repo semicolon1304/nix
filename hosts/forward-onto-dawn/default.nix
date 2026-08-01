@@ -1,17 +1,11 @@
-{config, lib, pkgs, inputs, ...}: {
+{ config, lib, pkgs, inputs, ... }: {
   imports = [
     ./hardware-configuration.nix
     #   ../common/default.nix
     ../common
   ];
 
-  # swapDevices = [
-  #   {
-  #     device = "/swapfile";
-  #     size = 8 * 1024;
-  #   }
-  # ];
-  # networking.networkmanager.enable = true;
+# networking.networkmanager.enable = true;
   services.openssh = {
     enable = true;
     openFirewall = true;
@@ -25,6 +19,12 @@
     };
   };
   networking.hostName = "forward-onto-dawn";
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
   # Nix settings
 
   # Services
@@ -35,7 +35,7 @@
   services.fprintd.enable = true;
   services.fprintd.tod.enable = true;
   services.fprintd.tod.driver = pkgs.libfprint-2-tod1-goodix;
-  
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];

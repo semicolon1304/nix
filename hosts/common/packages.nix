@@ -1,16 +1,19 @@
-{pkgs, inputs, ...}: {
+{ pkgs, inputs, ... }: {
 
   programs.steam.enable = true;
   programs.hyprland.enable = true; # Move to hyprland.nix
   programs.zsh.enable = true;
   programs.git.enable = true;
   programs.neovim.enable = true;
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
   programs.nh = {
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 3";
     flake = "/home/zack/nix"; # sets NH_OS_FLAKE variable for you
   };
+  services.udisks2.enable = true;
   fonts.packages = with pkgs; [
     source-sans
   ];
@@ -18,6 +21,8 @@
     # Essentials
     kitty
     nautilus
+    nautilus-open-any-terminal
+    sushi # Preview for nautilus
     pcmanfm-qt
     fastfetch
     home-manager
@@ -31,7 +36,8 @@
     micro
     file
     killall
-    
+    busybox
+
 
     # Programming
     python3
@@ -44,23 +50,31 @@
     #jetbrains.rust-rover
     nixd
     nixpkgs-fmt
+    android-tools
+
+    # Games
+    prismlauncher
 
     # ...Networking?
     proton-vpn
     tailscale
+    dnsmasq # Needed for vm
 
-    # A/V
+    # A/V?
     evince # Document viewer
     loupe # Image viewer
     mpv # Video player
     ffmpeg
     handbrake
+    gapless # Maybe just for in-amber-clad
+    calibre
 
-    # Fonts 
-    # source-sans
-    # Move to hyprland.nix
-    # noctalia-shell
-    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    # Communication
     vesktop
+    teams-for-linux
+
+    # Misc
+    inputs.iloader.packages.${pkgs.stdenv.hostPlatform.system}.default
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }
