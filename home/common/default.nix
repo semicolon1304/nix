@@ -7,6 +7,7 @@
     ./zen.nix
     ./noctalia.nix
     ./hyprland.nix
+    ./theme.nix
   ];
 
   # USB Automount
@@ -20,6 +21,8 @@
         file_manager = "${pkgs.nautilus}/bin/nautilus";
       };
     };
+    tray = "never";
+    notify = false;
   };
   xdg.userDirs.createDirectories = true;
 

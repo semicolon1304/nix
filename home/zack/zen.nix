@@ -39,6 +39,7 @@ in
         "{cb31ec5d-c49a-4e5a-b240-16c767444f62}" = "indie-wiki-buddy";
         "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = "return-youtube-dislikes";
         "sponsorBlocker@ajay.app" = "sponsorblock";
+        "firefox@tampermonkey.net" = "tampermonkey";
       };
     };
     profiles.default = {

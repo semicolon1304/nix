@@ -13,7 +13,6 @@
     clean.extraArgs = "--keep-since 4d --keep 3";
     flake = "/home/zack/nix"; # sets NH_OS_FLAKE variable for you
   };
-  services.udisks2.enable = true;
   fonts.packages = with pkgs; [
     source-sans
   ];
@@ -68,6 +67,7 @@
     handbrake
     gapless # Maybe just for in-amber-clad
     calibre
+    imagemagick
 
     # Communication
     vesktop
@@ -76,5 +76,6 @@
     # Misc
     inputs.iloader.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    hyprshot
   ];
 }

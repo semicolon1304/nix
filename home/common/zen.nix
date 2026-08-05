@@ -77,7 +77,7 @@ in
           id = "cookie-autodelete";
           pinned = true;
         };
-        # "{20fc2e06-e3e4-4b2b-812b-ab431220cada}" = "startpage-private-search";
+        # "{20fc2e06-e3e4-4b2b-812b-ab431220cada}" = "startpage-private-search";restore
         "{74145f27-f039-47ce-a470-a662b129930a}" = "clearurls";
         "{85860b32-02a8-431a-b2b1-40fbd64c9c69}" = "github-file-icons";
       };
@@ -128,7 +128,7 @@ in
               name = "Nix Package Search";
             urls = [
               {
-                template = "https://search.nixos.org/packages?channel=26.05&query={searchTerms}";
+                template = "https://search.nixos.org/packages?channel=26.05";
                 params = [
                   {
                     name = "query";
@@ -144,7 +144,7 @@ in
               name = "Nix Options Search";
             urls = [
               {
-                template = "https://search.nixos.org/options?channel=26.05&query={searchTerms}";
+                template = "https://search.nixos.org/options";
                 params = [
                   {
                     name = "query";
@@ -164,6 +164,7 @@ in
         "zen.view.use-single-toolbar" = false;
         "geo.enabled" = false;
         "browser.toolbars.bookmarks.visibility" = "always";
+        "browser.startup.page" = "1";
       };
       bookmarks = { 
         force = true; # true = Rewrite bookmarks on each rebuild (overwrite browser changes)

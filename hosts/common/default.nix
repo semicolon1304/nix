@@ -16,11 +16,14 @@
   services.displayManager.gdm.enable = true;
   services.printing.enable = true;
   services.tailscale.enable = true;
+  services.udisks2.enable = true;
   services.usbmuxd.enable = true;
   services.pipewire = {
     enable = true;
     pulse.enable = true;
   };
+
+    # mountOnMedia = true;
   # Mount SMB Share(s)
   # TODO: Use secrets for authentication
   fileSystems."/mnt/Media" =
