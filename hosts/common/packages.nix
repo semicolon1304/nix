@@ -22,12 +22,11 @@
     nautilus
     nautilus-open-any-terminal
     sushi # Preview for nautilus
-    pcmanfm-qt
+    pcmanfm
     fastfetch
     home-manager
     brightnessctl
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
-    # zsh-powerlevel10k # may not need this
 
     # Terminal Utilities
     btop
@@ -37,7 +36,14 @@
     killall
     busybox
 
-
+    # Dangerous Hacking Tools
+    nmap
+    burpsuite
+    hashcat
+    zbar
+    imhex
+    netcat
+    
     # Programming
     python3
     dotnet-aspnetcore
@@ -53,7 +59,9 @@
 
     # Games
     prismlauncher
-
+    archipelago
+    poptracker
+    
     # ...Networking?
     proton-vpn
     tailscale
@@ -77,5 +85,6 @@
     inputs.iloader.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     hyprshot
+    obsidian
   ];
 }

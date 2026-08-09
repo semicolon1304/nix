@@ -18,6 +18,7 @@
         "https://raw.codeberg.page/AllPurposeMat/Disblock-Origin/DisblockOrigin.theme.css"
         "https://capnkitten.github.io/Material-Discord/Material-Discord.theme.css"
       ];
+      enabledThemes = ["noctalia-material.theme.css"];
       winNativeTitleBar = false;
       disableMinSize = true;
       plugins = {

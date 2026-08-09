@@ -99,14 +99,14 @@ in
               {
                 template = "https://startpage.com/sp/search?query={searchTerms}";
                 params = [
-                  {
-                    name = "query";
-                    value = "searchTerms";
-                  }
+                  # {
+                  #   name = "query";
+                  #   value = "searchTerms";
+                  # }
                 ];
               }
             ];
-            definedAliases = [ "@startpage" ];
+            definedAliases = [ "@startpage" "@sp" ];
           };
           mynixos = {
             name = "My NixOS";
@@ -128,12 +128,12 @@ in
               name = "Nix Package Search";
             urls = [
               {
-                template = "https://search.nixos.org/packages?channel=26.05";
+                template = "https://search.nixos.org/packages?query={searchTerms}";
                 params = [
-                  {
-                    name = "query";
-                    value = "searchTerms";
-                  }
+                  # {
+                  #   name = "query";
+                  #   value = "searchTerms";
+                  # }
                 ];
               }
             ];
@@ -144,12 +144,12 @@ in
               name = "Nix Options Search";
             urls = [
               {
-                template = "https://search.nixos.org/options";
+                template = "https://search.nixos.org/options?query={searchTerms}";
                 params = [
-                  {
-                    name = "query";
-                    value = "searchTerms";
-                  }
+                  # {
+                  #   name = "query";
+                  #   value = "searchTerms";
+                  # }
                 ];
               }
             ];
