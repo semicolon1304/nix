@@ -9,7 +9,7 @@
         bbenoist.nix
         ms-python.python
         yusifaliyevpro.vscicons
-        vscodevim.vim
+        # vscodevim.vim
         kamadorueda.alejandra
         jdinhlife.gruvbox
         arrterian.nix-env-selector

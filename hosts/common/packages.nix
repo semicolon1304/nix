@@ -16,6 +16,12 @@
   fonts.packages = with pkgs; [
     source-sans
   ];
+
+  # nix.settings = {
+  #   extra-substituters = [ "https://noctalia.cachix.org" ];
+  #   extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
+  # };
+
   environment.systemPackages = with pkgs; [
     # Essentials
     kitty
@@ -26,6 +32,7 @@
     fastfetch
     home-manager
     brightnessctl
+    
     inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # Terminal Utilities
@@ -43,7 +50,7 @@
     zbar
     imhex
     netcat
-    
+
     # Programming
     python3
     dotnet-aspnetcore
@@ -61,18 +68,31 @@
     prismlauncher
     archipelago
     poptracker
-    
+    protontricks
+    lumafly
+
     # ...Networking?
     proton-vpn
     tailscale
     dnsmasq # Needed for vm
+    qbittorrent
 
     # A/V?
     evince # Document viewer
     loupe # Image viewer
     mpv # Video player
     ffmpeg
-    handbrake
+    # freac
+    # flac
+    # lame
+    # Handbrake
+    (writeShellApplication {
+      name = "handbrake";
+      text = ''
+        LD_LIBRARY_PATH=/run/opengl-driver/lib:''${LD_LIBRARY_PATH-} ${pkgs.handbrake}/bin/ghb "$@"
+      '';
+    })
+  
     gapless # Maybe just for in-amber-clad
     calibre
     imagemagick
@@ -86,5 +106,17 @@
     inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     hyprshot
     obsidian
+    bleachbit
+    wine
+    winetricks
+    # brlaser # printer
   ];
+
+  services.flatpak = {
+    enable = true;
+    packages = [
+      "xyz.rust4diva.Rust4Diva"
+      "org.freac.freac"
+    ];
+  };
 }

@@ -14,6 +14,9 @@ in {
       lines = lib.mkDefault 5;
       background_opacity = lib.mkDefault 0.75;
     };
+    settings = {
+      confirm_os_window_close = lib.mkDefault (0);
+    };
     keybindings = {
       "super+shift+enter" = "new_os_window_with_cwd";
     };

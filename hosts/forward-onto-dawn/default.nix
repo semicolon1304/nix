@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, ... }: {
+{ config, lib, pkgs, inputs, prev, ... }: {
   imports = [
     ./hardware-configuration.nix
     ../common
@@ -30,7 +30,9 @@
     overdrive.enable = true;
   };
 
-  # Nix settings
+handbrake = prev.handbrake.overrideAttrs(previous: {
+    nativeBuildInputs = (previous.nativeBuildInputs or []) ++ [ pkgs.autoAddDriverRunpath ];
+});
 
   # Services
   services.power-profiles-daemon.enable = true;

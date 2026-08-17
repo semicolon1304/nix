@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-26.05";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,8 +25,11 @@
       url = "github:nab138/iloader";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
-
+    distro-grub-themes = {
+      url = "github:AdisonCavani/distro-grub-themes";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
 
   outputs =
@@ -33,7 +37,8 @@
     , nixpkgs
     , home-manager
     , nixos-hardware
-    , # nix-vscode-extensions
+    , nix-flatpak
+    ,
       ...
     } @ inputs:
     let
@@ -49,6 +54,7 @@
           modules = [
             ./hosts/forward-onto-dawn
             nixos-hardware.nixosModules.framework-16-7040-amd
+            nix-flatpak.nixosModules.nix-flatpak
             inputs.distro-grub-themes.nixosModules.${system}.default
           ];
         };
@@ -57,6 +63,7 @@
           specialArgs = { inherit inputs system; };
           modules = [
             ./hosts/in-amber-clad
+            nix-flatpak.nixosModules.nix-flatpak
             inputs.distro-grub-themes.nixosModules.${system}.default
           ];
         };

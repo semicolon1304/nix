@@ -8,6 +8,7 @@
     ./noctalia.nix
     ./hyprland.nix
     ./theme.nix
+    ./xdg.nix
   ];
 
   # USB Automount
@@ -17,14 +18,10 @@
       # workaround for
       # https://github.com/nix-community/home-manager/issues/632
       program_options = {
-        # replace with your favorite file manager
         file_manager = "${pkgs.nautilus}/bin/nautilus";
       };
     };
     tray = "never";
     notify = false;
   };
-  xdg.userDirs.createDirectories = true;
-
-
 }

@@ -4,7 +4,7 @@
     ../common
   ];
 
-  grub.device = "/dev/nvme0n1p1";
+  boot.loader.grub.device = "nodev";
   distro-grub-themes = {
     enable = true;
     theme = "asus-rog";
@@ -32,12 +32,35 @@
     open = true;
     nvidiaSettings = true;
     powerManagement.enable = true;
-    powerManagement.finegrained = true;
+    #   powerManagement.finegrained = true;
   };
   services.xserver.videoDrivers = [ "nvidia" ];
+  # CUDA
+  nix.settings = {
+    substituters = [
+      "https://cache.nixos-cuda.org"
+      "https://cache.flox.dev"
+    ];
+    trusted-public-keys = [
+      "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
+      "flox-cache-public-1:7F4OyH7ZCnFhcze3fJdfyXYLQw/aV7GEed86nQ7IsOs="
+    ];
+  };
+  nixpkgs.config.cudaSupport = true;
 
-  # Nix settings
+  specialisation = {
+    zack.configuration = {
+      services.desktopManager.gnome.enable = true;
+    };
+  };
 
   # Services
-  
+  services.avahi.enable = true;
+  services.wivrn = {
+    enable = true;
+    steam.enable = true;
+    steam.importOXRRuntimes = true;
+    openFirewall = true;
+    autoStart = true;
+  };
 }

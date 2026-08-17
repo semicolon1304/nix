@@ -10,7 +10,7 @@
     };
     grub = {
       enable = true;
-      efiSupport = false;
+      efiSupport = true;
       useOSProber = true;
     };
   };
@@ -33,12 +33,17 @@
   services.udisks2.enable = true;
   services.usbmuxd.enable = true;
   services.gvfs.enable = true;
-  xdg.autostart.enable = true;
+  services.flatpak.enable = true;
   services.pipewire = {
     enable = true;
     pulse.enable = true;
   };
+  services.printing.drivers = [
+    pkgs.brlaser
+  ];
 
+  
+  xdg.autostart.enable = true;
   # mountOnMedia = true;
   # Mount SMB Share(s)
   # TODO: Use secrets for authentication
@@ -48,9 +53,9 @@
       fsType = "cifs";
       options = [
         "credentials=/home/zack/.credentials"
-        # "x-systemd.automount"
+        "x-systemd.automount"
         "x-systemd.requires=tailscaled.serivce"
-        "x-systemd.after=tailscale.service"
+        # "x-systemd.after=tailscale.service"
         "x-systemd.idle-timeout=60"
         "x-systemd.mount-timeout=30"
         "uid=1000,gid=100"
@@ -63,8 +68,10 @@
     # hashedPassword = "$y$j9T$p0U92qd4AG6bvkAqSAkPq.$sEY5Es4qLrpv/xvhXBpDi.NNMwzWbt79HiOEqHJRYp6";
     # packages = with pkgs; [];
   };
+
   services.displayManager.defaultSession = "hyprland";
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
   system.stateVersion = "26.05"; # Did you read the comment?
+  
   # //minipc/shared                           /var/home/shared        cifs    username=yourusername,password=yourpassword,uid=yourusername,gid=yourgroup,x-systemd.automount,x-systemd.requires=tailscaled.service,x-systemd.idle-timeout=60,x-systemd.mount-timeout=30 0 0
 }
