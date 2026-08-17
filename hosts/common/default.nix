@@ -34,6 +34,7 @@
   services.usbmuxd.enable = true;
   services.gvfs.enable = true;
   services.flatpak.enable = true;
+  services.gnome.gnome-keyring.enable = true;
   services.pipewire = {
     enable = true;
     pulse.enable = true;
@@ -44,7 +45,6 @@
 
   
   xdg.autostart.enable = true;
-  # mountOnMedia = true;
   # Mount SMB Share(s)
   # TODO: Use secrets for authentication
   fileSystems."/mnt/Media" =
@@ -54,8 +54,9 @@
       options = [
         "credentials=/home/zack/.credentials"
         "x-systemd.automount"
+        "noauto"
         "x-systemd.requires=tailscaled.serivce"
-        # "x-systemd.after=tailscale.service"
+        "x-systemd.after=tailscale.service"
         "x-systemd.idle-timeout=60"
         "x-systemd.mount-timeout=30"
         "uid=1000,gid=100"
