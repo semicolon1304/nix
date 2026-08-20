@@ -29,10 +29,12 @@
     zluda.enable = true;
     overdrive.enable = true;
   };
-
-handbrake = prev.handbrake.overrideAttrs(previous: {
-    nativeBuildInputs = (previous.nativeBuildInputs or []) ++ [ pkgs.autoAddDriverRunpath ];
-});
+  # boot.kernelParams = [ "button.lid_init_state=open" ];
+  services.logind.settings.Login = {
+  HandleLidSwitch = "suspend";
+  HandleLidSwitchExternalPower = "lock";
+  HandleLidSwitchDocked = "ignore";
+};
 
   # Services
   services.power-profiles-daemon.enable = true;

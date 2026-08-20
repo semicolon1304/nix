@@ -85,13 +85,14 @@
     # freac
     # flac
     # lame
+    # TODO: Move this to in-amber-clad/packages.nix (and create that)
     # Handbrake
-    (writeShellApplication {
-      name = "handbrake";
-      text = ''
-        LD_LIBRARY_PATH=/run/opengl-driver/lib:''${LD_LIBRARY_PATH-} ${pkgs.handbrake}/bin/ghb "$@"
-      '';
-    })
+    # (writeShellApplication {
+    #   name = "handbrake";
+    #   text = ''
+    #     LD_LIBRARY_PATH=/run/opengl-driver/lib:''${LD_LIBRARY_PATH-} ${pkgs.handbrake}/bin/ghb "$@"
+    #   '';
+    # })
   
     gapless # Maybe just for in-amber-clad
     calibre
@@ -109,9 +110,9 @@
     bleachbit
     wine
     winetricks
-    # brlaser # printer
+    swtpm # TPM for windows vm
   ];
-
+  # Move some of this to per-system packages.nix
   services.flatpak = {
     enable = true;
     packages = [
